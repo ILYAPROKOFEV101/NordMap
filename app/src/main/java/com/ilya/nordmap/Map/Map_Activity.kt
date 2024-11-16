@@ -21,6 +21,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -114,18 +115,6 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
         Log.d("URL_GET_MAKER", "${currentLatLngGlobal.latitude} and ${currentLatLngGlobal.longitude}")
 
         supportActionBar?.hide()
@@ -192,14 +181,25 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
 
 
 
-    fun onStandardButtonClick(view: View) {
-        mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
+    private var isSatelliteView = false // Переменная для отслеживания состояния карты
+
+    fun onMapTypeButtonClick(view: View) {
+        val mapButton = view as ImageButton
+
+        if (isSatelliteView) {
+            // Переключаемся на обычный вид
+            mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
+            mapButton.setImageResource(R.drawable.map_24px) // Устанавливаем иконку для обычного вида
+        } else {
+            // Переключаемся на спутниковый вид
+            mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
+            mapButton.setImageResource(R.drawable.satellite) // Устанавливаем иконку для спутникового вида
+        }
+
+        // Инвертируем состояние
+        isSatelliteView = !isSatelliteView
     }
 
-    // Метод для обработки нажатия на кнопку "Satellite"
-    fun onSatelliteButtonClick(view: View) {
-        mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
-    }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
@@ -214,8 +214,8 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
 
         val locationAutoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.locationAutoCompleteTextView)
         val findButton = findViewById<ImageView>(R.id.findButton)
-        val routeButton = findViewById<ImageView>(R.id.routeButton)
-        val socialbutton = findViewById<ImageView>(R.id.social)
+        val media = findViewById<ImageView>(R.id.social)
+        val Plot_route = findViewById<ImageButton>(R.id.RoutingButton)
 
         addAllMarkers(Openmarkers_map)
 
@@ -279,8 +279,9 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
                         // Инициализация объекта Polyline
                         polyline = mMap.addPolyline(PolylineOptions().width(5f).color(Color.BLUE))
 
+
                         var isRouteDrawn = false
-                        routeButton.setOnClickListener {
+                        Plot_route.setOnClickListener {
                             if (isRouteDrawn) {
                                 currentPolyline?.remove()
                                 removeMarkers()
@@ -290,13 +291,12 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
                                 isRouteDrawn = true
                             }
                         }
+
                     }
                 }
             }, 200) // Задержка в 0.2 секунду перед выполнением кода
         }
     }
-
-
 
 
     private val markerList = mutableListOf<Marker>()  // Список для сохранения маркеров
@@ -376,6 +376,7 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
         val marker_name = dialogView.findViewById<TextView>(R.id.marker_name)
         val marker_coordinates = dialogView.findViewById<TextView>(R.id.marker_coordinates)
         val marker_description = dialogView.findViewById<TextView>(R.id.marker_description)
+        val Plot_route = dialogView.findViewById<ImageButton>(R.id.find)
 
 
 
@@ -383,14 +384,16 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
         marker_name.text = marker.name
         marker_coordinates.text = "${marker.lat} ${marker.lon}"
         marker_description.text = marker.description
+        routePoints = LatLng(marker.lat, marker.lon)
+
+        var isRouteDrawn = false
+
+
+        Log.d("MarkerDialog", "Marker name: $routePoints")
 
         Glide.with(this)
             .load(marker.imageUrl)  // Загрузка изображения по URL
             .into(marker_image)  // Установка изображения в ImageView
-
-        // marker_about_marker.text = marker.description
-        //marker_street.text = ""
-        //marker_start_Date.text = "${marker.visitTime}"
 
 
         val builder = AlertDialog.Builder(this)
@@ -401,17 +404,27 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
         dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_background)
 
 
-
-
         dialog.show()
+
+        Plot_route.setOnClickListener {
+            if (isRouteDrawn) {
+                currentPolyline?.remove()
+                removeMarkers()
+                isRouteDrawn = false
+            } else {
+                findLocation_route()
+                isRouteDrawn = true
+            }
+            routePoints = LatLng(marker.lat, marker.lon)
+            findLocation_mark(marker.lat, marker.lon)
+            dialog.dismiss()
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onMapClick(latLng: LatLng) {
      //   showAddMarkerDialog(latLng, this, uid_main, this)
     }
-
-
 
     private fun addAllMarkers(markers: List<MapMarker_DATA>) {
         if (::mMap.isInitialized) {
@@ -437,9 +450,9 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
                         bitmapDescriptorFromVector(
                             this@Map_Activity,
                             R.drawable.location_on_,
-                            "FF005B",
-                            140,
-                            140
+                            "FF5757",
+                            100,
+                            100
                         )
                     )
             )
@@ -463,13 +476,33 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
                 val location = results[0]
                 val latLng = LatLng(location.latitude, location.longitude)
 
-                // Добавление метки на карту
-                mMap.addMarker(MarkerOptions().position(latLng).title(address))
 
                 // Перемещение камеры к метке
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
 
                 routePoints = LatLng(location.latitude, location.longitude)
+
+
+                if (::mMap.isInitialized) {
+                    val marker = mMap.addMarker(
+                        MarkerOptions()
+                            .position(latLng)
+                            .title(address)
+                            .icon(
+                                bitmapDescriptorFromVector(
+                                    this@Map_Activity,
+                                    R.drawable.location_on_,
+                                    "FF5757",
+                                    100,
+                                    100
+                                )
+                            )
+                    )
+                } else {
+                    Log.e("MapError", "mMap не инициализирован")
+                }
+
+
             } else {
                 // Обработка случая, когда результаты геокодирования пусты
                 Toast.makeText(this, "Location not found", Toast.LENGTH_SHORT).show()

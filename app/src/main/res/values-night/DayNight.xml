@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <!-- Настройки для тёмной темы -->
+    <item name="colorPrimary">@color/nightPrimary</item>
+    <item name="colorPrimaryVariant">@color/nightPrimaryDark</item>
+    <item name="colorOnPrimary">@color/nightOnPrimary</item>
+    <item name="colorSecondary">@color/nightSecondary</item>
+    <item name="android:windowBackground">@color/nightBackground</item>
+</style>
+</resources>

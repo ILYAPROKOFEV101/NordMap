@@ -34,6 +34,7 @@
     <string name="password">Password</string>
     <string name="title_activity_social_map">SocialMapActivity</string>
     <string name="write_user_name">Write friends name</string>
+    <string name="find_on_map">Plot route on map</string>
 
 
 

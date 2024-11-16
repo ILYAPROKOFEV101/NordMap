@@ -23,4 +23,12 @@
     <color name="androidnavigationBarColor">#000000</color> <!-- Черный -->
 
 
+
+    <color name="primary">#6200EE</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="background">#FFFFFF</color>
+    <color name="on_background">#000000</color>
+
+
+
 </resources>

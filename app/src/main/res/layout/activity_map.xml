@@ -26,32 +26,36 @@
     android:layout_marginTop="50dp">
 
 
-    <AutoCompleteTextView
-        android:id="@+id/locationAutoCompleteTextView"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"
-        android:hint="Enter Location"
-        android:imeOptions="actionDone"
-        android:inputType="text"
-        android:backgroundTint="@color/white"
-        android:paddingEnd="30dp"
-        android:maxLines="1"
-        android:textColor="@android:color/black"
+        <AutoCompleteTextView
+            android:id="@+id/locationAutoCompleteTextView"
+            android:layout_width="301dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@color/white"
+            android:hint="Enter Location"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingEnd="30dp"
+            android:textColor="@android:color/white"
+
+        android:textColorHint="@color/white"
         android:textSize="24sp" />
+
 
         <ImageView
             android:id="@+id/findButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="57dp"
+            android:layout_height="57dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:backgroundTint="@color/white"
             android:contentDescription="Поиск"
-
+            android:tint="@color/white"
             android:padding="12dp"
             android:scaleType="centerInside"
-            map:srcCompat="@drawable/search_24px" />
+            map:srcCompat="@drawable/search_24px"
+            tools:ignore="UseAppTint" />
     </LinearLayout>
 
 <LinearLayout
@@ -61,33 +65,19 @@
 
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/btnStandard"
-            android:layout_width="match_parent"
-            android:layout_height="59dp"
-            android:padding="5.dp"
-            android:onClick="onStandardButtonClick"
-            android:contentDescription="обычная карта"
-            map:srcCompat="@drawable/map_24px" />
+    <ImageButton
+        android:id="@+id/btnMapType"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:padding="5dp"
+        android:onClick="onMapTypeButtonClick"
+        android:contentDescription="Тип карты"
+        app:srcCompat="@drawable/satellite"
+        android:tint="@color/white"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        tools:ignore="UseAppTint" />
 
-        <ImageView
-            android:id="@+id/btnSatellite"
-            android:layout_width="match_parent"
-            android:layout_height="59dp"
-            android:padding="5.dp"
-            android:onClick="onSatelliteButtonClick"
-            android:contentDescription="Спутник"
-            map:srcCompat="@drawable/satellite" />
 
-        <ImageView
-            android:id="@+id/routeButton"
-            android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:contentDescription="Проложить маршрут"
-            android:onClick="onSatelliteButtonClick"
-            android:padding="5.dp"
-            android:text="Проложить маршрут"
-            map:srcCompat="@drawable/explore_24px" />
     <ImageView
             android:id="@+id/social"
             android:layout_width="match_parent"
@@ -96,9 +86,24 @@
             android:onClick="onSatelliteButtonClick"
             android:padding="5.dp"
             android:text="Проложить маршрут"
-            map:srcCompat="@drawable/group24px" />
+            map:srcCompat="@drawable/newsmode_24px"
+        android:tint="@color/white"
+        tools:ignore="UseAppTint" />
 
-    </LinearLayout>
+    <ImageButton
+        android:id="@+id/RoutingButton"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:padding="5dp"
+        android:contentDescription="Тип карты"
+        app:srcCompat="@drawable/routing"
+        android:tint="@color/white"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="centerInside"
+        tools:ignore="UseAppTint" />
+
+
+</LinearLayout>
 
     <!-- Обертка для текстовых полей -->
 

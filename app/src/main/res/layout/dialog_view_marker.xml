@@ -19,10 +19,25 @@
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+       />
 
 
     <!-- Координаты -->
+
+    <ImageButton
+        android:id="@+id/find"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_24px"
+        app:layout_constraintBottom_toTopOf="@+id/type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toEndOf="@+id/marker_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.529"
+        app:tint="@color/black" />
+
+
     <TextView
         android:id="@+id/type"
         android:layout_width="0dp"
@@ -72,6 +87,9 @@
 
     <!-- Кнопка -->
 
+    <!-- Название -->
+
+
     <TextView
         android:id="@+id/visit_time"
         android:layout_width="0dp"
@@ -81,9 +99,25 @@
         android:text="Время посещения: Круглосуточно"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/marker_description" />
+
+    <TextView
+        android:id="@+id/Photo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Фото"
+        android:textAlignment="textStart"
+        android:textSize="23sp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toTopOf="@+id/marker_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/visit_time"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/marker_image"
