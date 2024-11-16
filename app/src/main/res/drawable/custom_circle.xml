@@ -1,0 +1,23 @@
+<!-- res/drawable/custom_circle.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Белый ободок -->
+    <item>
+        <shape
+            android:shape="oval">
+            <solid android:color="#FFFFFF" />
+            <size
+                android:width="48dp"
+                android:height="48dp" />
+        </shape>
+    </item>
+    <!-- Синий внутренний круг -->
+    <item android:bottom="8dp" android:left="8dp" android:right="8dp" android:top="8dp">
+        <shape
+            android:shape="oval">
+            <solid android:color="#4285F4" />
+            <size
+                android:width="32dp"
+                android:height="32dp" />
+        </shape>
+    </item>
+</layer-list>

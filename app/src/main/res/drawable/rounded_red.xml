@@ -1,0 +1,6 @@
+<!-- res/drawable/rounded_red.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/holo_red_dark" /> <!-- Устанавливаем красный цвет -->
+    <corners android:radius="8dp" /> <!-- Закругленные углы -->
+</shape>
+

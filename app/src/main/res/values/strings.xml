@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">MeetMap</string>
+    <string name="web_client_id">409555274758-6qdljvmd0rv0sdsm7730el10n6kpfj9d.apps.googleusercontent.com</string>
+    <string name="login">Log in with Google </string>
+    <string name="title_activity_main_menu">Main_menu</string>
+    <string name="back">Back</string>
+    <string name="name_of_plase"></string>
+    <string name="fromchosedata">Выберите дату начала </string>
+    <string name="tochosedata">Когда метка удалится ?</string>
+    <string name="chosetime">Выберите время </string>
+    <string name="time">Время: %02d:%02d</string>
+    <string name="places">Больше мест</string>
+    <string name="place">Мест</string>
+    <string name="publick">Доступная всем</string>
+    <string name="pravet">Приватная метка</string>
+    <string name="marker_button_ready">Ready</string>
+    <string name="marker_button_not">Not yet</string>
+    <string name="marker_button_find_tag">find tag</string>
+    <string name="marker_button_delete_tag">delete tag</string>
+    <string name="About_marker">About marker</string>
+    <string name="Street">Street</string>
+    <string name="Start_Date_and_Time">Start Date and Time</string>
+    <string name="End_Date_and_Time">End Date and Time</string>
+    <string name="places_in_marker">Places</string>
+    <string name="marker_name">Name</string>
+    <string name="my_tags">My tags</string>
+    <string name="yes">Join</string>
+    <string name="no">No</string>
+    <string name="addfriends">Add friends</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="singin">Sing in</string>
+    <string name="email">Email</string>
+    <string name="logwithemail">Sing in using email</string>
+    <string name="password">Password</string>
+    <string name="title_activity_social_map">SocialMapActivity</string>
+    <string name="write_user_name">Write friends name</string>
+
+
+
+</resources>

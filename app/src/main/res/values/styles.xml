@@ -1,0 +1,19 @@
+<resources>
+    <!-- Другие стили -->
+
+    <!-- Ваш стиль для кругления изображения -->
+    <style name="RoundImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+
+    <style name="CustomDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:gravity">center</item> <!-- Центрирование диалога -->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+</resources>

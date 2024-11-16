@@ -1,0 +1,13 @@
+package com.ilya.nordmap.Map.Room
+
+import Dao
+import MapMarker_DATA
+import kotlinx.coroutines.flow.Flow
+
+class MarkerRepository(private val dao: Dao) {
+    fun getAllMarkers(): Flow<List<MapMarker_DATA>> = dao.getAllItem()
+
+    suspend fun insertMarker(marker: MapMarker_DATA) {
+        dao.insertItem(marker)
+    }
+}

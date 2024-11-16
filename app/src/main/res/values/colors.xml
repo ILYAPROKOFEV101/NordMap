@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FDE300</color>
+    <color name="purple_700">#D12121</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="alertcolor">#5AC4F6</color>
+    <color name="alertcolor_frinds">#37CCEFFF</color>
+
+
+
+
+    <color name="colorPrimary">#1E88E5</color> <!-- Синий основной -->
+    <color name="colorPrimaryDark">#1565C0</color> <!-- Синий темный -->
+    <color name="colorOnPrimary">#FFFFFF</color> <!-- Белый для текста на синем -->
+    <color name="colorSecondary">#42A5F5</color> <!-- Голубой -->
+    <color name="colorSecondaryVariant">#2196F3</color> <!-- Голубой темный -->
+    <color name="colorOnSecondary">#FFFFFF</color> <!-- Белый для текста на голубом -->
+    <color name="yourStatusBarColor">#FFFFFF</color> <!-- Белый для текста на голубом -->
+    <color name="yourBackgroundColor">#929191</color> <!-- Белый для текста на голубом -->
+    <color name="androidnavigationBarColor">#000000</color> <!-- Черный -->
+
+
+</resources>

@@ -1,0 +1,155 @@
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="420dp"
+    android:orientation="vertical"
+    android:backgroundTint="@color/alertcolor"
+    android:background="@drawable/rounded_background"
+
+    android:padding="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_background"
+            >
+
+        </ImageView>
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="match_parent">
+
+        </Space>
+        <TextView
+            android:id="@+id/markerName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="Marker Name"
+            android:textAlignment="center"
+            android:background="@drawable/rounded_background"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp">
+
+    </Space>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+        <TextView
+            android:id="@+id/markerDescription"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_background"
+            android:text="@string/About_marker"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp">
+
+        </Space>
+
+
+        <TextView
+            android:id="@+id/marker_street"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_background"
+            android:text="@string/Street"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp">
+
+        </Space>
+
+        <TextView
+            android:id="@+id/marker_start_Date"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:text="@string/Start_Date_and_Time"
+            android:textAlignment="center"
+            android:background="@drawable/rounded_background"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp">
+
+        </Space>
+
+        <TextView
+            android:id="@+id/marker_end_Date"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:text="@string/End_Date_and_Time"
+            android:textAlignment="center"
+            android:background="@drawable/rounded_background"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+        </Space>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/marker_button_delete_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_background"
+                android:text="@string/marker_button_delete_tag" />
+
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/marker_button_find_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_background"
+                android:text="@string/marker_button_find_tag" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+
