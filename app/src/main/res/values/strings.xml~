@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NordMap</string>
+    <string name="app_name">MeetMap</string>
     <string name="web_client_id">409555274758-6qdljvmd0rv0sdsm7730el10n6kpfj9d.apps.googleusercontent.com</string>
     <string name="login">Log in with Google </string>
     <string name="title_activity_main_menu">Main_menu</string>

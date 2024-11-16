@@ -377,12 +377,12 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
         val marker_coordinates = dialogView.findViewById<TextView>(R.id.marker_coordinates)
         val marker_description = dialogView.findViewById<TextView>(R.id.marker_description)
 
+        val marker_button_not = dialogView.findViewById<Button>(R.id.marker_button_not)
+        val marker_button_ready = dialogView.findViewById<Button>(R.id.marker_button_ready)
 
 
         // Установка данных маркера в элементы диалога
         marker_name.text = marker.name
-        marker_coordinates.text = "${marker.lat} ${marker.lon}"
-        marker_description.text = marker.description
 
         Glide.with(this)
             .load(marker.imageUrl)  // Загрузка изображения по URL
@@ -400,7 +400,10 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
         val dialog = builder.create()
         dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_background)
 
-
+        // Обработка нажатия кнопки "Нет"
+        marker_button_not.setOnClickListener {
+            dialog.dismiss()
+        }
 
 
         dialog.show()

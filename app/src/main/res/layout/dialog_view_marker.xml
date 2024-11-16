@@ -3,118 +3,109 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
+    <!-- Название -->
+    <TextView
+        android:id="@+id/marker_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Норильск"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        android:textStyle="bold"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="horizontal"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/marker_image"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:gravity="center"
-            android:background="@drawable/rounded_background"
-             />
-
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="150.dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="151dp">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <TextView
-            android:id="@+id/marker_about_marker"
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:textSize="24sp"
-            android:background="@drawable/rounded_background"
-            android:textAlignment="center"
-            android:text="@string/About_marker" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <TextView
-            android:id="@+id/marker_street"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:textSize="24sp"
-            android:background="@drawable/rounded_background"
-            android:textAlignment="center"
-            android:text="@string/Street" />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <TextView
-                android:id="@+id/marker_start_Date"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:textSize="24sp"
-            android:background="@drawable/rounded_background"
-            android:textAlignment="center"
-            android:text="@string/Start_Date_and_Time" />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+    <!-- Координаты -->
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Тип: Метка"
+        android:textSize="14sp"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@id/marker_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="88dp"
-            android:orientation="horizontal">
+    <!-- Координаты -->
 
+    <!-- Описание -->
 
-            <Button
-                android:id="@+id/marker_button_not"
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_background"
-                android:text="@string/marker_button_not" />
+    <!-- Время посещения -->
 
-            <Space
-                android:layout_width="5dp"
-                android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/marker_coordinates"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="start"
+        android:text="Координаты"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/type" />
 
-            <Button
-                android:id="@+id/marker_button_ready"
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_background"
-                android:text="@string/marker_button_ready" />
+    <!-- Описание -->
+    <TextView
+        android:id="@+id/marker_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="start"
+        android:text=""
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/marker_coordinates" />
 
+    <!-- Изображение -->
 
-        </LinearLayout>
+    <!-- Кнопка -->
 
+    <TextView
+        android:id="@+id/visit_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Время посещения: Круглосуточно"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/marker_description" />
 
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/marker_image"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="40dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/visit_time" />
+
+    <ImageButton
+        android:id="@+id/custom_button"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/aigenerat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/marker_image" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
