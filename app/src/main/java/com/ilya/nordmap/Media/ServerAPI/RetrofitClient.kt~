@@ -1,0 +1,28 @@
+package com.ilya.nordmap.Media.ServerAPI
+
+import android.util.Log
+
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
+
+object RetrofitClient {
+
+    private val baseUrl = "https://ngw.devices.sberbank.ru:9443/api/v2/"
+
+    // Создаем OkHttpClient с логированием
+    private val client = OkHttpClient.Builder()
+        .addInterceptor(HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY // Логируем тело запросов и ответов
+        })
+        .build()
+
+    // Инициализация Retrofit с использованием кастомного OkHttpClient
+    val instance: Retrofit = Retrofit.Builder()
+        .baseUrl(baseUrl)
+        .client(client)  // Устанавливаем кастомный OkHttpClient
+        .addConverterFactory(GsonConverterFactory.create()) // Для преобразования JSON в объекты
+        .build()
+}

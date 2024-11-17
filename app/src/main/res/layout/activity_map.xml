@@ -83,7 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:contentDescription="Проложить маршрут"
-            android:onClick="onSatelliteButtonClick"
+            android:onClick="onMediaclick"
             android:padding="5.dp"
             android:text="Проложить маршрут"
             map:srcCompat="@drawable/newsmode_24px"

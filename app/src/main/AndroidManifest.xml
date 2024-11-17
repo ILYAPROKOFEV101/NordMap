@@ -2,14 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 
     <application
@@ -23,14 +21,16 @@
         android:theme="@style/Theme.MeetMap"
         tools:targetApi="31">
 
-
+        <activity
+            android:name=".Media.MediaActivity"
+            android:exported="false"
+            android:label="@string/title_activity_media"
+            android:theme="@style/Theme.MeetMap" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MeetMap">
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,10 +42,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDaF5wvZj3dJFSYTZRx3XH9O_Oz8XsNETs" />
 
-
         <activity
-            android:configChanges="orientation|screenSize"
             android:name="com.ilya.MeetingMap.Mine_menu.Map_Activity"
+            android:configChanges="orientation|screenSize"
             android:exported="false"
             android:label="@string/title_activity_main_menu"
             android:largeHeap="true"

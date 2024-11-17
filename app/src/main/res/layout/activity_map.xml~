@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:layout_gravity="top"
+    android:layout_marginTop="50dp">
+
+
+        <AutoCompleteTextView
+            android:id="@+id/locationAutoCompleteTextView"
+            android:layout_width="301dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@color/white"
+            android:hint="Enter Location"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingEnd="30dp"
+            android:textColor="@android:color/white"
+
+        android:textColorHint="@color/white"
+        android:textSize="24sp" />
+
+
+        <ImageView
+            android:id="@+id/findButton"
+            android:layout_width="57dp"
+            android:layout_height="57dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:backgroundTint="@color/white"
+            android:contentDescription="Поиск"
+            android:tint="@color/white"
+            android:padding="12dp"
+            android:scaleType="centerInside"
+            map:srcCompat="@drawable/search_24px"
+            tools:ignore="UseAppTint" />
+    </LinearLayout>
+
+<LinearLayout
+        android:layout_width="69dp"
+        android:layout_height="235dp"
+        android:layout_gravity="center|right"
+
+        android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/btnMapType"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:padding="5dp"
+        android:onClick="onMapTypeButtonClick"
+        android:contentDescription="Тип карты"
+        app:srcCompat="@drawable/satellite"
+        android:tint="@color/white"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        tools:ignore="UseAppTint" />
+
+
+    <ImageView
+            android:id="@+id/social"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:contentDescription="Проложить маршрут"
+            android:onClick="onSatelliteButtonClick"
+            android:padding="5.dp"
+            android:text="Проложить маршрут"
+            map:srcCompat="@drawable/newsmode_24px"
+        android:tint="@color/white"
+        tools:ignore="UseAppTint" />
+
+    <ImageButton
+        android:id="@+id/RoutingButton"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:padding="5dp"
+        android:contentDescription="Тип карты"
+        app:srcCompat="@drawable/routing"
+        android:tint="@color/white"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="centerInside"
+        tools:ignore="UseAppTint" />
+
+
+</LinearLayout>
+
+    <!-- Обертка для текстовых полей -->
+
+
+
+
+    <!-- Обертка для текстовых полей -->
+    <!-- CoordinatorLayout для BottomSheet -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        />
+
+
+</FrameLayout>

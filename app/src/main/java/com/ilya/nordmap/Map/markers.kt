@@ -893,19 +893,6 @@ imageUrl = "https://vuktyl-r11.gosweb.gosuslugi.ru/netcat_files/5/144/vuktyl.jpg
 queryPrompt = "Какие маршруты есть в районе Вуктыла?"
 ),
 
-MapMarker_DATA(
-id = 70,
-name = "Гора Иремель",
-type = "Гора",
-lon = 58.8167,
-lat = 54.7000,
-description = "Известная вершина на границе Коми и Башкирии, популярна среди туристов.",
-visitTime = "Круглосуточно",
-isVisited = false,
-imageUrl = "https://avatars.mds.yandex.net/i?id=9e7b3c48c49f310a16cce028adda88c1_l-12817767-images-thumbs&n=13",
-queryPrompt = "Как добраться до горы Иремель?"
-),
-
 
 MapMarker_DATA(
 id = 71,
@@ -976,8 +963,8 @@ MapMarker_DATA(
 id = 76,
 name = "Мыс Канин Нос",
 type = "Природный объект",
-lon = 45.5000,
-lat = 68.7000,
+lon = 43.273126,
+lat = 68.656600,
 description = "Мыс, омываемый Баренцевым морем, с потрясающими видами на Арктику.",
 visitTime = "Круглосуточно",
 isVisited = false,
@@ -1088,18 +1075,7 @@ isVisited = false,
 imageUrl = "https://i.vuzopedia.ru/storage/app/uploads/public/639/97c/f76/63997cf7652d9242368862.jpg",
 queryPrompt = "Какие исследования проводятся в Арктическом институте?"
 ),
-MapMarker_DATA(
-id = 85,
-name = "Национальный парк 'Русская Арктика'",
-type = "Национальный парк",
-lon = 50.0000,
-lat = 75.0000,
-description = "Природный парк с уникальной экосистемой и доступом к Арктическому океану.",
-visitTime = "Круглосуточно",
-isVisited = false,
-imageUrl = "https://avatars.mds.yandex.net/i?id=47eb0e4b4344f270e1853ad4eec919c4_l-4168927-images-thumbs&n=13",
-queryPrompt = "Какие виды животных можно увидеть в парке 'Русская Арктика'?"
-),
+
 
 MapMarker_DATA(
 id = 86,

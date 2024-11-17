@@ -3,6 +3,7 @@ package com.ilya.MeetingMap.Mine_menu
 
 import MapMarker_DATA
 import android.Manifest
+import android.content.Intent
 
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -56,6 +57,7 @@ import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.gms.maps.model.RoundCap
 import com.ilya.MeetingMap.Map.DataModel.Friends_type
 import com.ilya.nordmap.Map.Openmarkers_map
+import com.ilya.nordmap.Media.MediaActivity
 
 import com.ilya.nordmap.R
 import decodePoly
@@ -223,6 +225,12 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
             val intent = Intent(this, SocialMapActivity::class.java)
             startActivity(intent)
         }*/
+
+        media.setOnClickListener {
+            val intent = Intent(this, MediaActivity::class.java)
+            startActivity(intent)
+        }
+
 
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line)
         locationAutoCompleteTextView.setAdapter(adapter)

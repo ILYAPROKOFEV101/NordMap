@@ -1,0 +1,1 @@
+data class Scopedata(val scope: String)
