@@ -1,6 +1,8 @@
 package com.ilya.nordmap.Media.ServerAPI
 
 import android.util.Log
+import com.ilya.nordmap.Map.DataModel.AIanswer
+import kotlinx.serialization.json.Json
 import okhttp3.FormBody
 
 import okhttp3.OkHttpClient
@@ -16,7 +18,7 @@ import javax.net.ssl.X509TrustManager
 import okhttp3.MediaType.Companion.toMediaType
 
 
-suspend fun Postquashen(token: String): String {
+suspend fun Postquashen(token: String, promt: String): String {
     // Создание кастомного TrustManager, который игнорирует ошибки сертификатов
     val trustAllCertificates: TrustManager = object : X509TrustManager {
         override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {
@@ -43,24 +45,24 @@ suspend fun Postquashen(token: String): String {
         .hostnameVerifier { _, _ -> true } // Отключаем проверку имени хоста
         .build()
 
-// Формирование тела запроса с параметром scope
+    // Формирование тела запроса с параметром scope
     val jsonBody = """
+{
+  "model": "GigaChat",
+  "messages": [
     {
-      "model": "GigaChat",
-      "messages": [
-        {
-          "role": "system",
-          "content": "Ты — эксперт по Арктике, специализируешься на географии и истории региона. Ты рассказываешь о достопримечательностях Арктики, их географическом расположении, историческом значении и особенностях, которые делают их уникальными."
-        },
-        {
-          "role": "user",
-          "content": "Расскажи о достопримечательностях Арктики, где они находятся и чем они интересны."
-        }
-      ],
-      "stream": false,
-      "update_interval": 0
+      "role": "system",
+      "content": "Ты — эксперт по Арктике, специализируешься на географии и истории региона. Ты рассказываешь о достопримечательностях Арктики, их географическом расположении, историческом значении и особенностях, которые делают их уникальными."
+    },
+    {
+      "role": "user",
+      "content": "$promt"
     }
-""".trimIndent()
+  ],
+  "stream": false,
+  "update_interval": 0
+}
+    """.trimIndent()
 
 
     Log.d("Postquashen", "Запрос был body: ${jsonBody}")

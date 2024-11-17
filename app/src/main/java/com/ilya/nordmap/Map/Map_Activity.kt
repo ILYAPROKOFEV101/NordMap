@@ -19,6 +19,7 @@ import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -56,8 +57,14 @@ import com.google.android.gms.maps.model.Polyline
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.gms.maps.model.RoundCap
 import com.ilya.MeetingMap.Map.DataModel.Friends_type
+import com.ilya.nordmap.Map.DataModel.AIanswer
+import com.ilya.nordmap.Map.DataModel.extractRussianLettersWithSpaces
+
 import com.ilya.nordmap.Map.Openmarkers_map
+import com.ilya.nordmap.Media.DataModel.Formattoken
 import com.ilya.nordmap.Media.MediaActivity
+import com.ilya.nordmap.Media.ServerAPI.Postquashen
+import com.ilya.nordmap.Media.ServerAPI.sendNotificationToCloud
 
 import com.ilya.nordmap.R
 import decodePoly
@@ -66,6 +73,7 @@ import getMapRoute
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 import showAddMarkerDialog
@@ -97,7 +105,7 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
     var routePoints by mutableStateOf<LatLng>(LatLng(0.0, 0.0))
     private val markerDataMap = mutableMapOf<Marker, MapMarker_DATA>()
 
-
+    private var GIGCHAT_TOKEN by mutableStateOf<Formattoken>(Formattoken("", 0))
 
 
 
@@ -136,6 +144,22 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 MY_PERMISSIONS_REQUEST_LOCATION
             )
+        }
+
+        // получение токена
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                GIGCHAT_TOKEN = sendNotificationToCloud()
+                // Получаем access_token из ответа
+
+                Log.d("Igot_new_Token:","$GIGCHAT_TOKEN")
+                Log.d("Igot_new_Token:","${GIGCHAT_TOKEN.access_token}")
+
+                //val answer =  Postquashen(GIGCHAT_TOKEN.access_token)
+               // Log.d("Igot_new_Token:","$answer")
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
 
 
@@ -380,11 +404,16 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
     private fun showMarkerDialog(marker: MapMarker_DATA) {
 
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_view_marker, null)
-        val marker_image = dialogView.findViewById<ImageView>(R.id.marker_image)
         val marker_name = dialogView.findViewById<TextView>(R.id.marker_name)
+        val marker_image = dialogView.findViewById<ImageView>(R.id.marker_image)
+
         val marker_coordinates = dialogView.findViewById<TextView>(R.id.marker_coordinates)
+        val type = dialogView.findViewById<TextView>(R.id.type)
+        val visit_time = dialogView.findViewById<TextView>(R.id.visit_time)
+        val Aitext = dialogView.findViewById<TextView>(R.id.Aitext)
         val marker_description = dialogView.findViewById<TextView>(R.id.marker_description)
         val Plot_route = dialogView.findViewById<ImageButton>(R.id.find)
+        val AiButton = dialogView.findViewById<ImageButton>(R.id.custom_button)
 
 
 
@@ -392,9 +421,39 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
         marker_name.text = marker.name
         marker_coordinates.text = "${marker.lat} ${marker.lon}"
         marker_description.text = marker.description
+        type.text = marker.type
+        visit_time.text = marker.visitTime
+
         routePoints = LatLng(marker.lat, marker.lon)
 
+
         var isRouteDrawn = false
+
+
+
+        // получение токена
+        AiButton.setOnClickListener {
+
+            GlobalScope.launch(Dispatchers.IO) {
+                try {
+                    GIGCHAT_TOKEN
+                    Log.d("Postquashen",GIGCHAT_TOKEN.access_token)
+                    // Получаем access_token из ответа
+                    var responseBody = Postquashen(GIGCHAT_TOKEN.access_token, "${marker.queryPrompt}")
+
+                    Log.d("Postquashen_Activity"," до парс $responseBody")
+                    val aiAnswer =  extractRussianLettersWithSpaces(responseBody)
+                    Log.d("Postquashen_Activity", "после парсинга ${aiAnswer}")
+                    Aitext.text = aiAnswer
+
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
+
+
+
 
 
         Log.d("MarkerDialog", "Marker name: $routePoints")
@@ -411,8 +470,23 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
         val dialog = builder.create()
         dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_background)
 
-
         dialog.show()
+        val window = dialog.window
+        window?.let {
+            it.setBackgroundDrawableResource(R.drawable.rounded_background)
+
+            // Устанавливаем размеры окна напрямую
+            val params = it.attributes
+            params.width = WindowManager.LayoutParams.MATCH_PARENT  // Ширина в пикселях
+            params.height = 1800 // Высота в пикселях
+
+            it.attributes = params
+        }
+
+
+
+
+
 
         Plot_route.setOnClickListener {
             if (isRouteDrawn) {

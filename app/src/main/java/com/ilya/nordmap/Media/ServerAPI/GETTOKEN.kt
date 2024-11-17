@@ -24,7 +24,7 @@ import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.TrustManager
 
 
-suspend fun sendNotificationToCloud(): Formattoken {
+fun sendNotificationToCloud(): Formattoken {
     // Создание кастомного TrustManager, который игнорирует ошибки сертификатов
     val trustAllCertificates: TrustManager = object : X509TrustManager {
         override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {

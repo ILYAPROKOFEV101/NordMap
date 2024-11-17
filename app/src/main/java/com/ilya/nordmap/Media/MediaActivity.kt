@@ -35,7 +35,7 @@ class MediaActivity : ComponentActivity() {
                 Log.d("Igot_new_Token:","$tokenResponse")
                 Log.d("Igot_new_Token:","${tokenResponse.access_token}")
 
-                    val answer =  Postquashen(tokenResponse.access_token)
+                    val answer =  Postquashen(tokenResponse.access_token, "Расскажи о достопримечательностях Арктики, где они находятся и чем они интересны.")
                 Log.d("Igot_new_Token:","$answer")
             } catch (e: Exception) {
                 e.printStackTrace()
