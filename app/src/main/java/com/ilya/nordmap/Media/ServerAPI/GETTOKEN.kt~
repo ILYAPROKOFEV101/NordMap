@@ -2,7 +2,6 @@ package com.ilya.nordmap.Media.ServerAPI
 
 import android.util.Log
 import com.google.gson.Gson
-import com.ilya.nordmap.Media.DataModel.Formattoken
 import com.ilya.nordmap.Media.DataModel.TokenResponse
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -24,7 +23,7 @@ import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.TrustManager
 
 
-suspend fun sendNotificationToCloud(): Formattoken {
+suspend fun sendNotificationToCloud(): String {
     // Создание кастомного TrustManager, который игнорирует ошибки сертификатов
     val trustAllCertificates: TrustManager = object : X509TrustManager {
         override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {
@@ -84,10 +83,7 @@ suspend fun sendNotificationToCloud(): Formattoken {
         if (response.isSuccessful) {
             // Логирование успешного ответа
             Log.d("sendNotificationToCloud", "Success, response body: $responseBody")
-
-            // Парсинг ответа в объект Formattoken
-            val gson = Gson()
-            return gson.fromJson(responseBody, Formattoken::class.java)
+            return responseBody
         } else {
             // Обработка ошибки, если ответ не успешен
             Log.e("sendNotificationToCloud", "Error response code: ${response.code}")

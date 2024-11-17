@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.ilya.nordmap.Media.ServerAPI.Postquashen
 
 import com.ilya.nordmap.Media.ServerAPI.sendNotificationToCloud
 import com.ilya.nordmap.Media.ui.theme.MarkersktTheme
@@ -32,6 +33,10 @@ class MediaActivity : ComponentActivity() {
                 // Получаем access_token из ответа
 
                 Log.d("Igot_new_Token:","$tokenResponse")
+                Log.d("Igot_new_Token:","${tokenResponse.access_token}")
+
+                    val answer =  Postquashen(tokenResponse.access_token)
+                Log.d("Igot_new_Token:","$answer")
             } catch (e: Exception) {
                 e.printStackTrace()
             }
