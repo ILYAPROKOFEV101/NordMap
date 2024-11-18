@@ -274,6 +274,8 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
             }
         }
 
+
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.isMyLocationEnabled = true
 
@@ -291,7 +293,7 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
 
                         updateSpeed(it.speed)
                         updateDistance(it)
-
+                        // новый поток
                         mMap.setOnMarkerClickListener { marker ->
                             val markerId = marker.title?.toIntOrNull()
 
