@@ -38,15 +38,17 @@
                 android:background="@drawable/search_24px"
                 app:layout_constraintBottom_toTopOf="@+id/type"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintHorizontal_bias="0.527"
                 app:layout_constraintStart_toEndOf="@+id/marker_name"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.529"
-                app:tint="@color/black" />
+                app:tint="@color/black"
+                android:contentDescription="Постороить маршрут"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/type"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Тип: Метка"
@@ -59,7 +61,7 @@
             <!-- Координаты -->
             <TextView
                 android:id="@+id/marker_coordinates"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="start"
@@ -73,7 +75,7 @@
             <!-- Описание -->
             <TextView
                 android:id="@+id/marker_description"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:gravity="start"
@@ -87,7 +89,7 @@
             <!-- Время посещения -->
             <TextView
                 android:id="@+id/visit_time"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="center"
@@ -100,7 +102,7 @@
 
             <TextView
                 android:id="@+id/Photo"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Фото"
                 android:textAlignment="textStart"
@@ -115,7 +117,7 @@
 
             <ImageView
                 android:id="@+id/marker_image"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="40dp"
                 android:scaleType="centerCrop"
@@ -131,6 +133,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/aigenerat"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="Постороить маршрут"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/marker_image" />

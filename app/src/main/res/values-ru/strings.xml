@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">NordMap</string>
+    <string name="web_client_id">409555274758-6qdljvmd0rv0sdsm7730el10n6kpfj9d.apps.googleusercontent.com</string>
+    <string name="login">Войти через Google</string>
+    <string name="title_activity_main_menu">Главное меню</string>
+    <string name="back">Назад</string>
+    <string name="name_of_plase"></string>
+    <string name="fromchosedata">Выберите дату начала</string>
+    <string name="tochosedata">Когда метка будет удалена?</string>
+    <string name="chosetime">Выберите время</string>
+    <string name="time">Время: %02d:%02d</string>
+    <string name="places">Больше мест</string>
+    <string name="place">Места</string>
+    <string name="publick">Доступно всем</string>
+    <string name="pravet">Приватная метка</string>
+    <string name="marker_button_ready">Готово</string>
+    <string name="marker_button_not">Не готово</string>
+    <string name="marker_button_find_tag">Найти метку</string>
+    <string name="marker_button_delete_tag">Удалить метку</string>
+    <string name="About_marker">О метке</string>
+    <string name="Street">Улица</string>
+    <string name="Start_Date_and_Time">Дата и время начала</string>
+    <string name="End_Date_and_Time">Дата и время окончания</string>
+    <string name="places_in_marker">Места</string>
+    <string name="marker_name">Название</string>
+    <string name="my_tags">Мои метки</string>
+    <string name="yes">Присоединиться</string>
+    <string name="no">Нет</string>
+    <string name="addfriends">Добавить друзей</string>
+    <string name="title_activity_test">Тестовая активность</string>
+    <string name="singin">Войти</string>
+    <string name="email">Электронная почта</string>
+    <string name="logwithemail">Войти с помощью электронной почты</string>
+    <string name="password">Пароль</string>
+    <string name="title_activity_social_map">Социальная карта</string>
+    <string name="write_user_name">Введите имя друга</string>
+    <string name="find_on_map">Построить маршрут на карте</string>
+    <string name="title_activity_media">Медиа-активность</string>
+    <string name="enter_location">Введите место</string>
+    <string name="Visittime">Время посещения</string>
+
+</resources>

@@ -34,6 +34,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.asLiveData
@@ -292,13 +293,26 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
                         updateDistance(it)
 
                         mMap.setOnMarkerClickListener { marker ->
-                            val mapMarker = markerDataMap[marker]
-                            if (mapMarker != null) {
-                                showMarkerDialog(mapMarker) // Показать диалог с информацией
-                                Log.d("MarkerData", "Clicked on marker: $mapMarker")
+                            val markerId = marker.title?.toIntOrNull()
+                            if (markerId != null) {
+                                val mapMarker = Openmarkers_map.find { it.id == markerId }
+                                if (mapMarker != null) {
+                                    showMarkerDialog(mapMarker)
+                                    Log.d("MarkerData", "Clicked on marker: $mapMarker")
+                                } else {
+                                    val errorMessage = "No data found for marker with ID: $markerId"
+                                    Log.w("MarkerData", errorMessage)
+                                    Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+                                }
+                            } else {
+                                val errorMessage = "Marker title is not a valid ID: ${marker.title}"
+                                Log.w("MarkerData", errorMessage)
+                                Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
                             }
-                            true // Возвращаем true, чтобы указать, что клик обработан
+                            true // Возвращаем true, чтобы подавить всплывающее окно
                         }
+
+
 
 
                         // Установка обработчика кликов по карте
@@ -422,7 +436,7 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
         marker_coordinates.text = "${marker.lat} ${marker.lon}"
         marker_description.text = marker.description
         type.text = marker.type
-        visit_time.text = marker.visitTime
+        visit_time.text = "${getString(R.string.Visittime)}: ${marker.visitTime}"
 
         routePoints = LatLng(marker.lat, marker.lon)
 
@@ -485,9 +499,6 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
 
 
 
-
-
-
         Plot_route.setOnClickListener {
             if (isRouteDrawn) {
                 currentPolyline?.remove()
@@ -527,7 +538,8 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
             val marker = mMap.addMarker(
                 MarkerOptions()
                     .position(latLng)
-                    .title(markerData.name)
+                    .title(markerData.id.toString())
+                    .snippet(markerData.name)
                     .icon(
                         bitmapDescriptorFromVector(
                             this@Map_Activity,

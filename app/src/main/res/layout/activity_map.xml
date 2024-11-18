@@ -33,7 +33,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:backgroundTint="@color/white"
-            android:hint="Enter Location"
+            android:hint="@string/enter_location"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLines="1"

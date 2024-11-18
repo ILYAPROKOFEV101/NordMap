@@ -95,7 +95,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx") // Firebase Authentication (Kotlin)
     implementation("com.google.android.gms:play-services-auth:21.2.0") // Google Play Services Auth
     implementation("androidx.compose.material3:material3:1.2.1") // Замените на актуальную версию
-    implementation("com.google.android.gms:play-services-maps:18.1.0")// для googlemaps
+    implementation("com.google.android.gms:play-services-maps:19.0.0")// для googlemaps
     implementation ("com.google.accompanist:accompanist-permissions:0.35.1-alpha") //
 
     implementation ("com.maxkeppeler.sheets-compose-dialogs:core:1.0.2")
@@ -140,6 +140,7 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.11.0")
+    implementation("io.coil-kt:coil-compose:2.5.0")
 
 
 

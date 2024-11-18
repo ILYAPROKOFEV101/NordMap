@@ -36,6 +36,9 @@
     <string name="write_user_name">Write friends name</string>
     <string name="find_on_map">Plot route on map</string>
     <string name="title_activity_media">MediaActivity</string>
+    <string name="enter_location">Enter location</string>
+    <string name="Visittime">Visit time</string>
+
 
 
 </resources>
