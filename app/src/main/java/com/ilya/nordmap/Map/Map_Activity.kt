@@ -294,23 +294,31 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
 
                         mMap.setOnMarkerClickListener { marker ->
                             val markerId = marker.title?.toIntOrNull()
+
+                            // Проверяем, если id маркера валиден
                             if (markerId != null) {
-                                val mapMarker = Openmarkers_map.find { it.id == markerId }
-                                if (mapMarker != null) {
-                                    showMarkerDialog(mapMarker)
-                                    Log.d("MarkerData", "Clicked on marker: $mapMarker")
-                                } else {
-                                    val errorMessage = "No data found for marker with ID: $markerId"
-                                    Log.w("MarkerData", errorMessage)
-                                    Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+                                // Выполняем операции в главном потоке
+                                runOnUiThread {
+                                    val mapMarker = Openmarkers_map.find { it.id == markerId }
+
+                                    if (mapMarker != null) {
+                                        showMarkerDialog(mapMarker)
+                                        Log.d("MarkerData", "Clicked on marker: $mapMarker")
+                                    } else {
+                                        val errorMessage = "No data found for marker with ID: $markerId"
+                                        Log.w("MarkerData", errorMessage)
+                                        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+                                    }
                                 }
                             } else {
+                                // Если id маркера неверен, выводим ошибку
                                 val errorMessage = "Marker title is not a valid ID: ${marker.title}"
                                 Log.w("MarkerData", errorMessage)
                                 Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
                             }
                             true // Возвращаем true, чтобы подавить всплывающее окно
                         }
+
 
 
 
@@ -416,103 +424,96 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
 
 
     private fun showMarkerDialog(marker: MapMarker_DATA) {
+        // Вызов диалога в главном потоке
+        runOnUiThread {
+            val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_view_marker, null)
+            val marker_name = dialogView.findViewById<TextView>(R.id.marker_name)
+            val marker_image = dialogView.findViewById<ImageView>(R.id.marker_image)
+            val marker_coordinates = dialogView.findViewById<TextView>(R.id.marker_coordinates)
+            val type = dialogView.findViewById<TextView>(R.id.type)
+            val visit_time = dialogView.findViewById<TextView>(R.id.visit_time)
+            val Aitext = dialogView.findViewById<TextView>(R.id.Aitext)
+            val marker_description = dialogView.findViewById<TextView>(R.id.marker_description)
+            val Plot_route = dialogView.findViewById<ImageButton>(R.id.find)
+            val AiButton = dialogView.findViewById<ImageButton>(R.id.custom_button)
 
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_view_marker, null)
-        val marker_name = dialogView.findViewById<TextView>(R.id.marker_name)
-        val marker_image = dialogView.findViewById<ImageView>(R.id.marker_image)
+            // Установка данных маркера в элементы диалога
+            marker_name.text = marker.name
+            marker_coordinates.text = "${marker.lat} ${marker.lon}"
+            marker_description.text = marker.description
+            type.text = marker.type
+            visit_time.text = "${getString(R.string.Visittime)}: ${marker.visitTime}"
 
-        val marker_coordinates = dialogView.findViewById<TextView>(R.id.marker_coordinates)
-        val type = dialogView.findViewById<TextView>(R.id.type)
-        val visit_time = dialogView.findViewById<TextView>(R.id.visit_time)
-        val Aitext = dialogView.findViewById<TextView>(R.id.Aitext)
-        val marker_description = dialogView.findViewById<TextView>(R.id.marker_description)
-        val Plot_route = dialogView.findViewById<ImageButton>(R.id.find)
-        val AiButton = dialogView.findViewById<ImageButton>(R.id.custom_button)
+            routePoints = LatLng(marker.lat, marker.lon)
 
+            var isRouteDrawn = false
 
+            // Получение токена и обработка запроса в фоне
+            AiButton.setOnClickListener {
+                GlobalScope.launch(Dispatchers.IO) {
+                    try {
+                        GIGCHAT_TOKEN
+                        Log.d("Postquashen", GIGCHAT_TOKEN.access_token)
+                        // Получаем access_token из ответа
+                        val responseBody = Postquashen(GIGCHAT_TOKEN.access_token, "${marker.queryPrompt}")
 
-        // Установка данных маркера в элементы диалога
-        marker_name.text = marker.name
-        marker_coordinates.text = "${marker.lat} ${marker.lon}"
-        marker_description.text = marker.description
-        type.text = marker.type
-        visit_time.text = "${getString(R.string.Visittime)}: ${marker.visitTime}"
+                        Log.d("Postquashen_Activity", "до парсинга $responseBody")
+                        val aiAnswer = extractRussianLettersWithSpaces(responseBody)
+                        Log.d("Postquashen_Activity", "после парсинга $aiAnswer")
 
-        routePoints = LatLng(marker.lat, marker.lon)
+                        // Обновление UI в главном потоке
+                        runOnUiThread {
+                            Aitext.text = aiAnswer
+                        }
 
-
-        var isRouteDrawn = false
-
-
-
-        // получение токена
-        AiButton.setOnClickListener {
-
-            GlobalScope.launch(Dispatchers.IO) {
-                try {
-                    GIGCHAT_TOKEN
-                    Log.d("Postquashen",GIGCHAT_TOKEN.access_token)
-                    // Получаем access_token из ответа
-                    var responseBody = Postquashen(GIGCHAT_TOKEN.access_token, "${marker.queryPrompt}")
-
-                    Log.d("Postquashen_Activity"," до парс $responseBody")
-                    val aiAnswer =  extractRussianLettersWithSpaces(responseBody)
-                    Log.d("Postquashen_Activity", "после парсинга ${aiAnswer}")
-                    Aitext.text = aiAnswer
-
-                } catch (e: Exception) {
-                    e.printStackTrace()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
                 }
             }
-        }
 
+            Log.d("MarkerDialog", "Marker name: $routePoints")
 
+            Glide.with(this)
+                .load(marker.imageUrl)  // Загрузка изображения по URL
+                .into(marker_image)  // Установка изображения в ImageView
 
+            val builder = AlertDialog.Builder(this)
+            builder.setView(dialogView)
 
+            // Создание и показ диалога
+            val dialog = builder.create()
+            dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_background)
+            dialog.show()
 
-        Log.d("MarkerDialog", "Marker name: $routePoints")
+            val window = dialog.window
+            window?.let {
+                it.setBackgroundDrawableResource(R.drawable.rounded_background)
 
-        Glide.with(this)
-            .load(marker.imageUrl)  // Загрузка изображения по URL
-            .into(marker_image)  // Установка изображения в ImageView
+                // Устанавливаем размеры окна напрямую
+                val params = it.attributes
+                params.width = WindowManager.LayoutParams.MATCH_PARENT  // Ширина в пикселях
+                params.height = 1800 // Высота в пикселях
 
-
-        val builder = AlertDialog.Builder(this)
-        builder.setView(dialogView)
-
-        // Создание и показ диалога
-        val dialog = builder.create()
-        dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_background)
-
-        dialog.show()
-        val window = dialog.window
-        window?.let {
-            it.setBackgroundDrawableResource(R.drawable.rounded_background)
-
-            // Устанавливаем размеры окна напрямую
-            val params = it.attributes
-            params.width = WindowManager.LayoutParams.MATCH_PARENT  // Ширина в пикселях
-            params.height = 1800 // Высота в пикселях
-
-            it.attributes = params
-        }
-
-
-
-        Plot_route.setOnClickListener {
-            if (isRouteDrawn) {
-                currentPolyline?.remove()
-                removeMarkers()
-                isRouteDrawn = false
-            } else {
-                findLocation_route()
-                isRouteDrawn = true
+                it.attributes = params
             }
-            routePoints = LatLng(marker.lat, marker.lon)
-            findLocation_mark(marker.lat, marker.lon)
-            dialog.dismiss()
+
+            Plot_route.setOnClickListener {
+                if (isRouteDrawn) {
+                    currentPolyline?.remove()
+                    removeMarkers()
+                    isRouteDrawn = false
+                } else {
+                    findLocation_route()
+                    isRouteDrawn = true
+                }
+                routePoints = LatLng(marker.lat, marker.lon)
+                findLocation_mark(marker.lat, marker.lon)
+                dialog.dismiss()
+            }
         }
     }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onMapClick(latLng: LatLng) {
