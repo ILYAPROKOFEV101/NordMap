@@ -43,7 +43,7 @@ Arctic Explorer App 🌍🧭
 
 bash
 Копировать код
-git clone https://github.com/your-repository-name.git
+git clone https://github.com/ILYAPROKOFEV101/NordMap
 cd your-repository-name
 Запустите проект:
 
