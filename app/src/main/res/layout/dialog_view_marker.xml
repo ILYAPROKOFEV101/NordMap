@@ -33,9 +33,9 @@
             <!-- Координаты -->
             <ImageButton
                 android:id="@+id/find"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/search_24px"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/routing"
                 app:layout_constraintBottom_toTopOf="@+id/type"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.527"
@@ -43,27 +43,32 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.529"
                 app:tint="@color/black"
-                android:contentDescription="Постороить маршрут"
+                android:contentDescription="Построить маршрут"
                 tools:ignore="TouchTargetSizeCheck" />
+
+
+            <!-- Координаты -->
+
+            <!-- Описание -->
 
             <TextView
                 android:id="@+id/type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
+                android:gravity="start"
                 android:text="Тип: Метка"
                 android:textSize="14sp"
-                android:gravity="start"
-                app:layout_constraintTop_toBottomOf="@id/marker_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/marker_name" />
 
-            <!-- Координаты -->
             <TextView
                 android:id="@+id/marker_coordinates"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="12dp"
                 android:gravity="start"
                 android:text="Координаты"
                 android:textSize="14sp"
@@ -72,12 +77,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/type" />
 
-            <!-- Описание -->
+            <!-- Время посещения -->
             <TextView
                 android:id="@+id/marker_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:gravity="start"
                 android:text=""
                 android:textSize="16sp"
@@ -86,13 +91,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/marker_coordinates" />
 
-            <!-- Время посещения -->
             <TextView
                 android:id="@+id/visit_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:gravity="center"
+                android:gravity="start"
                 android:text="Время посещения: Круглосуточно"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"

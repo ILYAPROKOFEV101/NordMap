@@ -441,7 +441,7 @@ class Map_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnPolyli
 
             // Установка данных маркера в элементы диалога
             marker_name.text = marker.name
-            marker_coordinates.text = "${marker.lat} ${marker.lon}"
+            marker_coordinates.text = "Координаты :${marker.lat} ${marker.lon}"
             marker_description.text = marker.description
             type.text = marker.type
             visit_time.text = "${getString(R.string.Visittime)}: ${marker.visitTime}"
